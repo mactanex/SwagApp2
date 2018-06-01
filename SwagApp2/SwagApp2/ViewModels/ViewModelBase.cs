@@ -9,18 +9,27 @@ namespace SwagApp2.ViewModels
 {
     public class ViewModelBase : BindableBase, INavigationAware, IDestructible
     {
-        protected INavigationService NavigationService { get; private set; }
+        protected INavigationService _navigationService { get; private set; }
+
+        public DelegateCommand<string> NavigateCommand { get; set; }
 
         private string _title;
         public string Title
         {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
+            get => _title;
+            set => SetProperty(ref _title, value);
         }
 
         public ViewModelBase(INavigationService navigationService)
         {
-            NavigationService = navigationService;
+            _navigationService = navigationService;
+            NavigateCommand = new DelegateCommand<string>(NavigateAsync);
+        }
+
+        private async void NavigateAsync(string name)
+        {
+
+            await _navigationService.NavigateAsync(name);
         }
 
         public virtual void OnNavigatedFrom(NavigationParameters parameters)
