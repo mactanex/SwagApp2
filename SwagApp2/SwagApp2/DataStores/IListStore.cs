@@ -7,10 +7,10 @@ namespace SwagApp2.DataStores
 {
     public interface IListStore
     {
-        Task<IEnumerable<string>> GetAllLists();
-        Task<ToDoList> GetList(string id);
-        Task<ToDoList> CreateList(ToDoList list);
-        Task<ToDoList> UpdateList(string id, ToDoList list);
-        Task<ToDoList> DeleteList(string id);
+        Task<IEnumerable<string>> GetAllListsAsync();
+        Task<ToDoList> GetListAsync(string id);
+        Task<ToDoList> CreateListAsync(ToDoList list);
+        Task<ToDoList> UpdateListAsync(string id, ToDoList list);
+        Task<ToDoList> DeleteListAsync(string id);
     }
 }

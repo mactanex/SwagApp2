@@ -6,7 +6,11 @@ using SwagApp2.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism.Unity;
+using Prism.Navigation;
+using Prism.Common;
+using Prism.Plugin.Popups;
 using SwagApp2.DataStores;
+
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace SwagApp2
@@ -25,16 +29,25 @@ namespace SwagApp2
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            await NavigationService.NavigateAsync("MasterDetailPageView/BaseNavigationView/ListPageView");
+            
+            await NavigationService.NavigateAsync("MasterDetailPageView/NavigationPage/ListPageView");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            // Popups
+            containerRegistry.RegisterPopupNavigationService();
+
+            // Services
+            containerRegistry.RegisterSingleton<IListStore, FakeListStore>();
+
+            // Views and viewmodels
             containerRegistry.RegisterForNavigation<MasterDetailPageView, MasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<MasterPageView, MasterPageViewModel>();
-            containerRegistry.RegisterForNavigation<BaseNavigationView, BaseNavigationViewModel>();
+            containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<ListPageView, ListPageViewModel>();
-            containerRegistry.RegisterSingleton<IListStore, FakeListStore>();
+
+            containerRegistry.RegisterForNavigation<NewListPageModal, NewListPageModalViewModel>();
         }
     }
 }

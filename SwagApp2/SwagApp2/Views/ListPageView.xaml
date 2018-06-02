@@ -4,18 +4,34 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SwagApp2.Views.ListPageView"
+
              Title="{Binding Title}">
-    <StackLayout>
-        <ListView ItemsSource="{Binding ListNameCollection}" >
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <ViewCell.View>
-                            <Label Text="{Binding}" />
-                        </ViewCell.View>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+
+    <ContentPage.Content>
+     <StackLayout>
+        
+            <ListView ItemsSource="{Binding ListNameCollection}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Label Text="{Binding}"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       FontSize="Large"
+                                       Margin="5"/>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <Button Text="{Binding AddNewListBrnText}" Style="{StaticResource ButtonStyle}" Command="{Binding NewListCommand}"/>
+                </ListView.Footer>
+            </ListView>
+
+        </StackLayout>
+
+
+    </ContentPage.Content>
+    
 </ContentPage>

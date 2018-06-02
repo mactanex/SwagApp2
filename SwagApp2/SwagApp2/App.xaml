@@ -10,12 +10,13 @@
         <ResourceDictionary>
             <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-                <Setter Property="BorderColor" Value="Lime"/>
-                <Setter Property="BorderRadius" Value="5"/>
-                <Setter Property="BorderWidth" Value="5"/>
-                <Setter Property="TextColor" Value="Teal"/>
-                <Setter Property="Margin" Value="5,5,5,5"/>
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BorderRadius" Value="10"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="TextColor" Value="Black"/>
                 <Setter Property="BackgroundColor" Value="Aquamarine"/>
+                <Setter Property="VerticalOptions" Value="Fill"/>
+                <Setter Property="FontSize" Value="Large"/>
             </Style>
         </ResourceDictionary>
 

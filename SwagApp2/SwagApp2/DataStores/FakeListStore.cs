@@ -29,12 +29,12 @@ namespace SwagApp2.DataStores
             };
         }
 
-        public Task<IEnumerable<string>> GetAllLists()
+        public Task<IEnumerable<string>> GetAllListsAsync()
         {
             return Task.FromResult(_listStore.Select(t => t.Key));
         }
 
-        public Task<ToDoList> GetList(string id)
+        public Task<ToDoList> GetListAsync(string id)
         {
             Validate(id);
             ToDoList list = null;
@@ -44,7 +44,7 @@ namespace SwagApp2.DataStores
             return Task.FromResult(list);
         }
 
-        public Task<ToDoList> CreateList(ToDoList list)
+        public Task<ToDoList> CreateListAsync(ToDoList list)
         {
             Validate(list);
             ToDoList result = null;
@@ -56,7 +56,7 @@ namespace SwagApp2.DataStores
             return Task.FromResult(result);
         }
 
-        public Task<ToDoList> UpdateList(string id, ToDoList list)
+        public Task<ToDoList> UpdateListAsync(string id, ToDoList list)
         {
             Validate(id);
             Validate(list);
@@ -76,7 +76,7 @@ namespace SwagApp2.DataStores
             return Task.FromResult(result);
         }
 
-        public Task<ToDoList> DeleteList(string id)
+        public Task<ToDoList> DeleteListAsync(string id)
         {
             Validate(id);
 
