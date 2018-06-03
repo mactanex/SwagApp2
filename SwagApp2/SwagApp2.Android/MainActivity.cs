@@ -21,6 +21,18 @@ namespace SwagApp2.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(new AndroidInitializer()));
         }
+
+        public override void OnBackPressed()
+        {
+            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            {
+                
+            }
+            else
+            {
+                
+            }
+        }
     }
 
     public class AndroidInitializer : IPlatformInitializer

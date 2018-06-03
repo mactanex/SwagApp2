@@ -31,7 +31,7 @@ namespace SwagApp2.ViewModels
 
         private async void NewListCommandExecuted()
         {
-            await _navigationService.NavigateAsync("NewListPageModal", null, true);
+            await _navigationService.NavigateAsync("MasterDetailPageView/NavigationPage/ListPageView/NewListPageModal");
         }
 
         #region Navigation
