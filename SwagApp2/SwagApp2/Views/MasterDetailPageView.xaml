@@ -5,7 +5,8 @@
                   prism:ViewModelLocator.AutowireViewModel="True"
                   x:Class="SwagApp2.Views.MasterDetailPageView"
                   Title="MasterDetailPageView"
-                  xmlns:local="clr-namespace:SwagApp2.Views">
+                  xmlns:local="clr-namespace:SwagApp2.Views"
+                  >
 
     <MasterDetailPage.Master>
         <local:MasterPageView>

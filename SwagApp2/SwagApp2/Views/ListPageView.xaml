@@ -4,33 +4,46 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SwagApp2.Views.ListPageView"
-
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             BackgroundColor="Black">
 
     <ContentPage.Content>
-     <StackLayout>
-        
-            <ListView ItemsSource="{Binding ListNameCollection}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.View>
-                                <Label Text="{Binding}"
-                                       HorizontalOptions="CenterAndExpand"
-                                       VerticalOptions="CenterAndExpand"
-                                       FontSize="Large"
-                                       Margin="5"/>
-                            </ViewCell.View>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.Footer>
-                    <Button Text="{Binding AddNewListBrnText}" Style="{StaticResource ButtonStyle}" Command="{Binding NewListCommand}"/>
-                </ListView.Footer>
-            </ListView>
 
-        </StackLayout>
+        <Grid Padding="35" BackgroundColor="DarkSalmon" Margin="0,2,0,0">
 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" Spacing="10">
+
+                <Frame HasShadow="True" BorderColor="Black" CornerRadius="10" IsClippedToBounds="True" Padding="2"
+                   VerticalOptions="Start">
+
+                    <ListView x:Name="ListNamesList" ItemsSource="{Binding ListNameCollection}" RowHeight="50"
+                          VerticalOptions="FillAndExpand" ItemAppearing="ListNamesList_ItemAppearing">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                        <Label Text="{Binding}"
+                                               FontSize="Large"
+                                               HorizontalOptions="FillAndExpand"
+                                               VerticalOptions="FillAndExpand"
+                                               VerticalTextAlignment="Center"
+                                               HorizontalTextAlignment="Center"></Label>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Frame>
+
+                <Button Text="{Binding AddNewListBrnText}" Style="{StaticResource ButtonStyle}" Command="{Binding NewListCommand}"/>
+
+            </StackLayout>
+
+        </Grid>
 
     </ContentPage.Content>
     

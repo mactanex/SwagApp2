@@ -17,6 +17,9 @@
                 <Setter Property="BackgroundColor" Value="Aquamarine"/>
                 <Setter Property="VerticalOptions" Value="Fill"/>
                 <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HeightRequest" Value="50"/>
             </Style>
         </ResourceDictionary>
 

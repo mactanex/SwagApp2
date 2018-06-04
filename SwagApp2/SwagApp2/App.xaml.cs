@@ -30,23 +30,26 @@ namespace SwagApp2
         {
             InitializeComponent();
             
-            await NavigationService.NavigateAsync("MasterDetailPageView/NavigationPage/ListPageView");
+            await NavigationService.NavigateAsync("MasterDetailPageView/BaseNavigationPageView/ListPageView");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            // Popups
+            // Popup init
             containerRegistry.RegisterPopupNavigationService();
 
             // Services
             containerRegistry.RegisterSingleton<IListStore, FakeListStore>();
 
+            // Navigation
+            containerRegistry.RegisterForNavigation<BaseNavigationPageView, BaseNavigationPageViewModel>();
+
             // Views and viewmodels
             containerRegistry.RegisterForNavigation<MasterDetailPageView, MasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<MasterPageView, MasterPageViewModel>();
-            containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<ListPageView, ListPageViewModel>();
 
+            // Modals
             containerRegistry.RegisterForNavigation<NewListPageModal, NewListPageModalViewModel>();
         }
     }

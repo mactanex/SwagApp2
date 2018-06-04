@@ -4,6 +4,7 @@ using Prism.Commands;
 using Prism.Navigation;
 using SwagApp.Models;
 using SwagApp2.DataStores;
+using Xamarin.Forms;
 
 namespace SwagApp2.ViewModels
 {
@@ -31,7 +32,7 @@ namespace SwagApp2.ViewModels
 
         private async void NewListCommandExecuted()
         {
-            await _navigationService.NavigateAsync("MasterDetailPageView/NavigationPage/ListPageView/NewListPageModal");
+            await _navigationService.NavigateAsync("MasterDetailPageView/BaseNavigationPageView/ListPageView/NewListPageModal");
         }
 
         #region Navigation
