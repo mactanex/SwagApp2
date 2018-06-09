@@ -42,5 +42,10 @@ namespace SwagApp2.ViewModels
         {
             return (!string.IsNullOrEmpty(_newListName));
         }
+
+        public override async void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            
+        }
     }
 }

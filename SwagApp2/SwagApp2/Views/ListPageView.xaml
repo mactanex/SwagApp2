@@ -6,22 +6,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SwagApp2.Views.ListPageView"
              Title="{Binding Title}"
-             BackgroundColor="Khaki">
-
-    <ContentPage.Resources>
-
-        <Style TargetType="customControls:ButtonWithoutShadow">
-            <Setter Property="WidthRequest" Value="70"/>
-            <Setter Property="HeightRequest" Value="70"/>
-            <Setter Property="CornerRadius" Value="35"/>
-            <Setter Property="BackgroundColor" Value="#F1F0CC"/>
-            <Setter Property="FontSize" Value="35"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
-            <Setter Property="BorderColor" Value="#F1F0CC"/>
-            <Setter Property="BorderWidth" Value="0"/>
-        </Style>
-
-    </ContentPage.Resources>
+             BackgroundColor="{StaticResource BackGroundColor}">
 
     <ContentPage.Content>
         
@@ -51,10 +36,10 @@
                 <Frame CornerRadius="10" IsClippedToBounds="True" VerticalOptions="Start" Padding="0" HasShadow="False">
 
                     <ListView x:Name="ListNamesList"
-                              ItemsSource="{Binding ListNameCollection}"
+                              ItemsSource="{Binding ListCollection}"
                               RowHeight="{Binding ListRowHeight, Mode=OneTime}"
                               VerticalOptions="FillAndExpand"
-                              SelectedItem="{Binding SelectedToDoItem}"
+                              SelectedItem="{Binding SelectedList}"
                               HeightRequest="{Binding ListHeight}">
 
                         <ListView.ItemTemplate>
