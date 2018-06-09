@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using SwagApp.Models;
+using SwagApp2.Models;
 
 namespace SwagApp2.DataStores
 {
     public interface IListStore
     {
-        Task<IEnumerable<string>> GetAllListsAsync();
+        Task<IEnumerable<ToDoList>> GetAllListsAsync();
         Task<ToDoList> GetListAsync(string id);
         Task<ToDoList> CreateListAsync(ToDoList list);
         Task<ToDoList> UpdateListAsync(string id, ToDoList list);

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="SwagApp2.Views.UserSettingsPage"
+             Padding="100"
+             BackgroundColor="Khaki"
+             Title="{Binding Title}">
+    <StackLayout VerticalOptions="Start" BackgroundColor="Transparent" Spacing="25">
+        <StackLayout VerticalOptions="Start" BackgroundColor="Transparent">
+            <Label Text="Name" FontSize="Large"></Label>
+            <Entry Text="{Binding Name}" HorizontalOptions="FillAndExpand" FontSize="Large" FontAttributes="Bold" ></Entry>
+            <Label Text="Display Name" FontSize="Large"></Label>
+            <Entry Text="{Binding DisplayName}" HorizontalOptions="FillAndExpand" FontSize="Large" FontAttributes="Bold"></Entry>
+        </StackLayout>
+        <Button Style="{StaticResource ButtonStyle}" Text="Save" Command="{Binding SaveCommand}"></Button>
+        <Label Text="{Binding Message}" TextColor="{Binding MessageColor}" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Medium"/>
+    </StackLayout>
+</ContentPage>

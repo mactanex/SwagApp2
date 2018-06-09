@@ -10,12 +10,5 @@ namespace SwagApp2.Views
         {
             InitializeComponent();
         }
-
-        private void ListNamesList_ItemAppearing(object sender, ItemVisibilityEventArgs e)
-        {
-            var vm = BindingContext as ListPageViewModel;
-            var adjust = - vm.ListNameCollection.Count + 1;
-            ListNamesList.HeightRequest = (vm.ListNameCollection.Count * ListNamesList.RowHeight) - adjust;
-        }
     }
 }

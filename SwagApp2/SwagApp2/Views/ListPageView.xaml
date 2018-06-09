@@ -2,44 +2,72 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:customControls="clr-namespace:SwagApp2.CustomControls;assembly=SwagApp2"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SwagApp2.Views.ListPageView"
              Title="{Binding Title}"
-             BackgroundColor="Black">
+             BackgroundColor="Khaki">
+
+    <ContentPage.Resources>
+
+        <Style TargetType="customControls:ButtonWithoutShadow">
+            <Setter Property="WidthRequest" Value="70"/>
+            <Setter Property="HeightRequest" Value="70"/>
+            <Setter Property="CornerRadius" Value="35"/>
+            <Setter Property="BackgroundColor" Value="#F1F0CC"/>
+            <Setter Property="FontSize" Value="35"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="BorderColor" Value="#F1F0CC"/>
+            <Setter Property="BorderWidth" Value="0"/>
+        </Style>
+
+    </ContentPage.Resources>
 
     <ContentPage.Content>
-
-        <Grid Padding="35" BackgroundColor="DarkSalmon" Margin="0,2,0,0">
+        
+        <Grid Padding="75">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" Spacing="10">
+            <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" Spacing="25">
 
-                <Frame HasShadow="True" BorderColor="Black" CornerRadius="10" IsClippedToBounds="True" Padding="2"
-                   VerticalOptions="Start">
+                <Label Text="{Binding Message}" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="Large"/>
 
-                    <ListView x:Name="ListNamesList" ItemsSource="{Binding ListNameCollection}" RowHeight="50"
-                          VerticalOptions="FillAndExpand" ItemAppearing="ListNamesList_ItemAppearing">
+                <StackLayout Orientation="Horizontal" Spacing="25" HorizontalOptions="CenterAndExpand">
+
+                    <customControls:ButtonWithoutShadow Text="+"
+                            Command="{Binding NewListCommand}"/>
+
+                    <customControls:ButtonWithoutShadow Text="|"
+                            Command="{Binding EditListCommand}"/>
+
+                    <customControls:ButtonWithoutShadow Text="-"
+                            Command="{Binding DeleteListCommand}"/>
+
+                </StackLayout>
+
+                <Frame CornerRadius="10" IsClippedToBounds="True" VerticalOptions="Start" Padding="0" HasShadow="False">
+
+                    <ListView x:Name="ListNamesList"
+                              ItemsSource="{Binding ListNameCollection}"
+                              RowHeight="{Binding ListRowHeight, Mode=OneTime}"
+                              VerticalOptions="FillAndExpand"
+                              SelectedItem="{Binding SelectedToDoItem}"
+                              HeightRequest="{Binding ListHeight}">
+
                         <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <StackLayout>
-                                        <Label Text="{Binding}"
-                                               FontSize="Large"
-                                               HorizontalOptions="FillAndExpand"
-                                               VerticalOptions="FillAndExpand"
-                                               VerticalTextAlignment="Center"
-                                               HorizontalTextAlignment="Center"></Label>
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Frame>
 
-                <Button Text="{Binding AddNewListBrnText}" Style="{StaticResource ButtonStyle}" Command="{Binding NewListCommand}"/>
+                            <DataTemplate>
+                                <TextCell Text="{Binding Name}" Detail="{Binding Owner}"></TextCell>
+                            </DataTemplate>
+
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+
+                </Frame>
 
             </StackLayout>
 

@@ -1,17 +1,21 @@
 ﻿using Prism.Commands;
 using Prism.Navigation;
-using SwagApp.Models;
 using SwagApp2.DataStores;
+using SwagApp2.Models;
+using SwagApp2.Views;
 
 namespace SwagApp2.ViewModels
 {
     public class NewListPageModalViewModel : ViewModelBase
     {
         private readonly IListStore _listStore;
-        public NewListPageModalViewModel(INavigationService navigationService, IListStore listStore) : base(navigationService)
+        private readonly IApplicationUserService _applicationUserService;
+        public NewListPageModalViewModel(INavigationService navigationService, IListStore listStore, IApplicationUserService applicationUserService)
+            : base(navigationService)
         {
+            _applicationUserService = applicationUserService;
             _listStore = listStore;
-            Title = "New list";
+            Title = "New List";
         }
 
         private string _newListName;
@@ -21,28 +25,17 @@ namespace SwagApp2.ViewModels
             set => SetProperty(ref _newListName, value);
         }
 
-        private string _newListNameErrorMessage = string.Empty;
-
-        public string NewListNameErrorMessage
-        {
-            get => _newListNameErrorMessage;
-            set => SetProperty(ref _newListNameErrorMessage, value);
-        }
-
         public string NewListButtonTxt => "Add List";
 
-        public DelegateCommand AddListCommand => new DelegateCommand(OnAddListCommandExecuted, AddListCommandCanExecute).ObservesProperty(() => NewListName);
+        public DelegateCommand AddListCommand => 
+            new DelegateCommand(OnAddListCommandExecuted, AddListCommandCanExecute)
+                .ObservesProperty(() => NewListName);
+
         private async void OnAddListCommandExecuted()
         {
-
-            if (await _listStore.CreateListAsync(new ToDoList {Name = _newListName}) == null)
-            {
-                NewListNameErrorMessage = "A list with that name exists!";
-            }
-            else
-            {
-                await _navigationService.GoBackAsync(new NavigationParameters { { "NewList", _newListName } });
-            }
+            var newList = new ToDoList(_newListName)
+                { Owner = _applicationUserService.DisplayName };
+            await NavigationService.GoBackAsync(new NavigationParameters { { "NewList", newList } });
         }
 
         private bool AddListCommandCanExecute()

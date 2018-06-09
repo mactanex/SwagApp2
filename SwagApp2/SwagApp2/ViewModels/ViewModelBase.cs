@@ -9,10 +9,8 @@ namespace SwagApp2.ViewModels
 {
     public class ViewModelBase : BindableBase, INavigationAware, IDestructible
     {
-        protected INavigationService _navigationService { get; private set; }
-
-        public DelegateCommand<string> NavigateCommand { get; set; }
-
+        protected INavigationService NavigationService { get; private set; }
+       
         private string _title;
         public string Title
         {
@@ -22,14 +20,7 @@ namespace SwagApp2.ViewModels
 
         public ViewModelBase(INavigationService navigationService)
         {
-            _navigationService = navigationService;
-            NavigateCommand = new DelegateCommand<string>(NavigateAsync);
-        }
-
-        private async void NavigateAsync(string name)
-        {
-
-            await _navigationService.NavigateAsync(name);
+            NavigationService = navigationService;         
         }
 
         public virtual void Destroy()

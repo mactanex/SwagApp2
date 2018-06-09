@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SwagApp.Models
+﻿namespace SwagApp2.Models
 {
     public class ListItem
     {

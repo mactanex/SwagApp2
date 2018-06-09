@@ -4,14 +4,20 @@
                   xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
                   prism:ViewModelLocator.AutowireViewModel="True"
                   x:Class="SwagApp2.Views.MasterDetailPageView"
-                  Title="MasterDetailPageView"
                   xmlns:local="clr-namespace:SwagApp2.Views"
                   >
 
     <MasterDetailPage.Master>
-        <local:MasterPageView>
+        <ContentPage Title="Aasd"             
+                     BackgroundColor="#8D775F"
+                     >
 
-        </local:MasterPageView>
+            <StackLayout Padding="40" Spacing="15">
+                <Button Text="{Binding NavigateToListViewTxt}" Style="{StaticResource ButtonStyle}" Command="{Binding NavigateCommand}" CommandParameter="BaseNavigationPageView/ListPageView"/>
+                <Button Text="{Binding NavigateToSettingsTxt}" Style="{StaticResource ButtonStyle}" Command="{Binding NavigateCommand}" CommandParameter="BaseNavigationPageView/UserSettingsPage"/>
+            </StackLayout>
+
+        </ContentPage>
     </MasterDetailPage.Master>
     
 </MasterDetailPage>

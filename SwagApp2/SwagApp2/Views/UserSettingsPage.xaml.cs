@@ -2,9 +2,9 @@
 
 namespace SwagApp2.Views
 {
-    public partial class MasterPageView : ContentPage
+    public partial class UserSettingsPage : ContentPage
     {
-        public MasterPageView()
+        public UserSettingsPage()
         {
             InitializeComponent();
         }

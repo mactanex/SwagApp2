@@ -3,35 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SwagApp.Models;
+using SwagApp2.Models;
 
 namespace SwagApp2.DataStores
 {
     public class FakeListStore : IListStore
     {
-        private static Dictionary<string, ToDoList> _listStore;
+        private readonly Dictionary<string, ToDoList> _listStore;
 
         public FakeListStore()
         {
-            if (_listStore == null)
+            _listStore = new Dictionary<string, ToDoList>
             {
-                _listStore = new Dictionary<string, ToDoList>();
-            }
-
-            _listStore["Derp List"] = new ToDoList()
-            {
-                Name = "Derp List",
-                ListItems =
+                ["Derp List"] = new ToDoList("Derp List")
                 {
-                    new ListItem {Checked = false, Description = "Swag", Name = "First Item"},
-                    new ListItem {Checked = false, Description = "Derp", Name = "Second Item"}
+                    Owner = "Jonas Nedergaard Andersen",
+                    Created = DateTime.Now,
+                    ListItems =
+                    {
+                        new ListItem {Checked = false, Description = "Swag", Name = "First Item"},
+                        new ListItem {Checked = false, Description = "Derp", Name = "Second Item"}
+                    }
+                },
+                ["Dope List"] = new ToDoList("Dope List")
+                {
+                    Owner = "Bella Terragni",
+                    Created = DateTime.Now.AddMinutes(-100),
+                    ListItems =
+                    {
+                        new ListItem {Checked = false, Description = "Swag", Name = "First Item"},
+                        new ListItem {Checked = false, Description = "Derp", Name = "Second Item"}
+                    }
                 }
             };
+
+
         }
 
-        public Task<IEnumerable<string>> GetAllListsAsync()
+        public Task<IEnumerable<ToDoList>> GetAllListsAsync()
         {
-            return Task.FromResult(_listStore.Select(t => t.Key));
+            var result = _listStore.Values.OrderByDescending(l => l.Created);
+            return Task.FromResult((IEnumerable<ToDoList>) result);
         }
 
         public Task<ToDoList> GetListAsync(string id)

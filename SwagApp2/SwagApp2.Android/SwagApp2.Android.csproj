@@ -71,6 +71,7 @@
     <PackageReference Include="Prism.Unity.Forms" Version="7.1.0.123-pre" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomRenderers\ButtonWithoutShadowRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

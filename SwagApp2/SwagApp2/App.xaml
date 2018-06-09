@@ -10,17 +10,17 @@
         <ResourceDictionary>
             <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-                <Setter Property="BorderColor" Value="Black"/>
-                <Setter Property="BorderRadius" Value="10"/>
-                <Setter Property="BorderWidth" Value="2"/>
-                <Setter Property="TextColor" Value="Black"/>
-                <Setter Property="BackgroundColor" Value="Aquamarine"/>
+                <Setter Property="BorderColor" Value="#F1F0CC"/>
+                <Setter Property="BackgroundColor" Value="#F1F0CC"/>
                 <Setter Property="VerticalOptions" Value="Fill"/>
                 <Setter Property="FontSize" Value="Large"/>
                 <Setter Property="CornerRadius" Value="10"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="HeightRequest" Value="50"/>
             </Style>
+            
+
+
         </ResourceDictionary>
 
 	</prism:PrismApplication.Resources>
