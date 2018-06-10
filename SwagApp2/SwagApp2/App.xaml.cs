@@ -9,6 +9,8 @@ using Prism.Plugin.Popups;
 using SwagApp2.DataStores;
 using SwagApp2.ViewModels.CustomDialog;
 using SwagApp2.DialogService;
+using SwagApp2.MeetingsNamespace.Datastores;
+using SwagApp2.MeetingsNamespace.Views;
 using SwagApp2.Views.CustomDialog;
 using Unity;
 
@@ -75,6 +77,8 @@ namespace SwagApp2
 
             // Custom Dialog
             containerRegistry.RegisterForNavigation<CustomErrorDialog, CustomErrorDialogViewModel>();
+
+
         }
     }
 }
