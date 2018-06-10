@@ -12,14 +12,11 @@ using Xamarin.Forms.Xaml;
 namespace SwagApp2.Views.CustomDialog
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CustomErrorDialog : PopupPage
+	public partial class CustomErrorDialog : CustomDialogBase
     {
-        public EventHandler CloseButtonEventHandler { get; set; }
 		public CustomErrorDialog ()
 		{
 			InitializeComponent ();    
         }
-
-
     }
 }

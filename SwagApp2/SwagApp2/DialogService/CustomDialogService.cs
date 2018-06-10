@@ -13,7 +13,7 @@ namespace SwagApp2.DialogService
         // the task completion source
         public TaskCompletionSource<bool> PageClosedTaskCompletionSource { get; set; }
 
-        private INavigationService _navigationService;
+        private readonly INavigationService _navigationService;
         public CustomDialogService(INavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -27,31 +27,23 @@ namespace SwagApp2.DialogService
             navParams.Add("BtnText", btnText);
             navParams.Add("Sender", this);
 
-            // Push the page to Navigation Stack
+            // Navigate
             return await Navigate(navParams, "CustomErrorDialog");
         }
 
         /// <summary>
         /// Handle popup page Navigation
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="popup"></param>
         /// <returns></returns>
         private async Task<bool> Navigate(INavigationParameters navParams, string uri)
         {
             await Reset();
 
-            bool ret = false;
-            var runTask = Task.Run(() =>
-            {
-                // await for the user to enter the text input
-                ret = PageClosedTask.Result;
-                // Pop the page from Navigation Stack
-            });
-
             // Push the page to Navigation Stack
             await _navigationService.NavigateAsync(new Uri(uri, UriKind.Relative), navParams);
-            await runTask;
+            // Wait for result
+            var ret = await PageClosedTask;
+            // Go back
             await _navigationService.GoBackAsync();
 
             return ret;
@@ -59,7 +51,7 @@ namespace SwagApp2.DialogService
 
         private async Task Reset()
         {
-            PageClosedTaskCompletionSource = new System.Threading.Tasks.TaskCompletionSource<bool>();
+            PageClosedTaskCompletionSource = new TaskCompletionSource<bool>();
             await _navigationService.ClearPopupStackAsync();
         }
     }

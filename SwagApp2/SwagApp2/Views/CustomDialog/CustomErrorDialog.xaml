@@ -1,7 +1,7 @@
-﻿<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+﻿<customDialog:CustomDialogBase xmlns="http://xamarin.com/schemas/2014/forms" 
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:customDialog="clr-namespace:SwagApp2.Views.CustomDialog;assembly=SwagApp2"
                  prism:ViewModelLocator.AutowireViewModel="True"
                  x:Class="SwagApp2.Views.CustomDialog.CustomErrorDialog">
 
@@ -26,4 +26,4 @@
     </Frame>
 
 
-</pages:PopupPage>
+</customDialog:CustomDialogBase>
