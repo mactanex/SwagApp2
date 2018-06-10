@@ -9,8 +9,6 @@ using Prism.Plugin.Popups;
 using SwagApp2.DataStores;
 using SwagApp2.ViewModels.CustomDialog;
 using SwagApp2.DialogService;
-using SwagApp2.MeetingsNamespace.Datastores;
-using SwagApp2.MeetingsNamespace.Views;
 using SwagApp2.Views.CustomDialog;
 using Unity;
 
@@ -60,7 +58,7 @@ namespace SwagApp2
             // Services
             containerRegistry.RegisterSingleton<IListStore, FakeListStore>();
             containerRegistry.RegisterSingleton<IApplicationUserService, ApplicationUserService>();
-            containerRegistry.RegisterSingleton<ICustomDialogService, CustomDialogService>();
+            containerRegistry.RegisterCustomDialogService();
 
             // Navigation
             containerRegistry.RegisterForNavigation<BaseNavigationPageView, BaseNavigationPageViewModel>();
@@ -74,11 +72,6 @@ namespace SwagApp2
             // Modals
             containerRegistry.RegisterForNavigation<NewListPageModal, NewListPageModalViewModel>();
             containerRegistry.RegisterForNavigation<NewListItemPageModal, NewListItemPageModalViewModel>();
-
-            // Custom Dialog
-            containerRegistry.RegisterForNavigation<CustomErrorDialog, CustomErrorDialogViewModel>();
-
-
         }
     }
 }
