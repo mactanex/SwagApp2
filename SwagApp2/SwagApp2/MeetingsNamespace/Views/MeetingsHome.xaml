@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CarouselPage ItemsSource="{Binding MeetingCollection}"  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="SwagApp2.MeetingsNamespace.Views.MeetingsHome" Title="Your Appointments" BackgroundColor="#6D9DC5">
+
+    <CarouselPage.ItemTemplate>
+        <DataTemplate>
+            <ContentPage>
+                <ContentPage.Padding>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS, Android" Value="0,40,0,0" />
+                    </OnPlatform>
+                </ContentPage.Padding>
+                <ScrollView>
+                    <StackLayout>
+                        <Label Text="Name: " FontSize="Medium" FontAttributes="Bold" Margin="10"/>
+                        <Label Text="{Binding Name}"  FontSize="Medium" FontAttributes="Italic" Margin="10"/>
+
+                        <Label Text="Action Item: " FontSize="Medium" FontAttributes="Bold" Margin="10"/>
+                        <Label Text="{Binding ActionItem}"  FontSize="Medium" FontAttributes="Italic" Margin="10"/>
+
+                        <Label Text="Type: " FontSize="Medium" FontAttributes="Bold" Margin="10"/>
+                        <Label Text="{Binding Type}"  FontSize="Medium" FontAttributes="Italic" Margin="10"/>
+
+                        <Label Text="Time Of Event: "  FontSize="Medium" FontAttributes="Bold" Margin="10"/>
+                        <Label Text="{Binding TimeOfEvent}"  FontSize="Medium" FontAttributes="Italic" Margin="10"/>
+
+                        <ListView x:Name="Action List" ItemsSource="{Binding Agenda}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout BackgroundColor="#eee"
+                                                     Orientation="Vertical">
+                                            <Label Text="{Binding Name}"></Label>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Author}"
+                                                       TextColor="#f35e20" />
+                                                <Switch IsToggled="{Binding Cleared}" />
+                                                <Label Text="{Binding CreatedStamp}"></Label>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <Label Text="Frequency: " FontSize="Medium" FontAttributes="Bold" Margin="10"/>
+                        <Label Text="{Binding Frequency}" FontSize="Medium" FontAttributes="Italic" Margin="10"/>
+
+                        <!--<Label Text="Date Of Event: "  FontSize="Medium" FontAttributes="Bold" Margin="10"/>
+
+                        <DatePicker MinimumDate="01/01/2018"
+                                    MaximumDate="12/31/2018"
+                                    Date="{Binding TimeOfEvent}" Margin="10" />
+
+                        <Label Text="Time Of Event: "  FontSize="Medium" FontAttributes="Bold" Margin="10"/>
+                        <TimePicker Time="{Binding TimeOfEvent}" Margin="10"></TimePicker>
+
+                        <Label Text="Created: " FontSize="Medium" FontAttributes="Bold" Margin="10"/>
+
+                        <DatePicker IsEnabled="False" MinimumDate="01/01/2018"
+                                    MaximumDate="12/31/2018"
+                                    Date="{Binding CreatedStamp}" Margin="10"/>-->
+
+
+
+                    </StackLayout>
+                </ScrollView>
+            </ContentPage>
+        </DataTemplate>
+    </CarouselPage.ItemTemplate>
+
+
+</CarouselPage>

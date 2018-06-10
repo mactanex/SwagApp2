@@ -15,6 +15,7 @@
             <StackLayout Padding="40" Spacing="15">
                 <Button Text="{Binding NavigateToListViewTxt}" Style="{StaticResource ButtonStyle}" Command="{Binding NavigateCommand}" CommandParameter="BaseNavigationPageView/ListPageView"/>
                 <Button Text="{Binding NavigateToSettingsTxt}" Style="{StaticResource ButtonStyle}" Command="{Binding NavigateCommand}" CommandParameter="BaseNavigationPageView/UserSettingsPage"/>
+                <Button Text="{Binding NavigateToMeetingsTxt}" Style="{StaticResource ButtonStyle}" Command="{Binding NavigateCommand}" CommandParameter="BaseNavigationPageView/MeetingsHome"/>
             </StackLayout>
 
         </ContentPage>

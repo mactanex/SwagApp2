@@ -11,6 +11,8 @@ using Prism.Navigation;
 using Prism.Common;
 using Prism.Plugin.Popups;
 using SwagApp2.DataStores;
+using SwagApp2.MeetingsNamespace.Datastores;
+using SwagApp2.MeetingsNamespace.Views;
 using Unity;
 
 
@@ -46,6 +48,9 @@ namespace SwagApp2
             if (aus.DisplayName == null)
                 await NavigationService.NavigateAsync("MasterDetailPageView/BaseNavigationPageView/UserSettingsPage");
             else
+            {
+                
+            }
                 await NavigationService.NavigateAsync("MasterDetailPageView/BaseNavigationPageView/ListPageView");
         }
 
@@ -59,6 +64,7 @@ namespace SwagApp2
             // Services
             containerRegistry.RegisterSingleton<IListStore, FakeListStore>();
             containerRegistry.RegisterSingleton<IApplicationUserService, ApplicationUserService>();
+            containerRegistry.RegisterSingleton<IMeetingStorage, FakeMeetingStorage>();
 
             // Navigation
             containerRegistry.RegisterForNavigation<BaseNavigationPageView, BaseNavigationPageViewModel>();
@@ -72,6 +78,7 @@ namespace SwagApp2
             // Modals
             containerRegistry.RegisterForNavigation<NewListPageModal, NewListPageModalViewModel>();
 
+            containerRegistry.RegisterForNavigation<MeetingsHome,MeetingsHomeViewModel>(); //meetings 
         }
     }
 }

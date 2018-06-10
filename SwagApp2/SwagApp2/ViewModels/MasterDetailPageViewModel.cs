@@ -15,6 +15,8 @@ namespace SwagApp2.ViewModels
 
         public string NavigateToListViewTxt => "List Collection";
         public string NavigateToSettingsTxt => "Settings";
+        public string NavigateToMeetingsTxt => "Meetings";
+
 
         public DelegateCommand<string> NavigateCommand { get; }
 
