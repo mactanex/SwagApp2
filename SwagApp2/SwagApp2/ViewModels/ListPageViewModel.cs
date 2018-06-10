@@ -6,6 +6,7 @@ using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using SwagApp2.DataStores;
+using SwagApp2.DialogService;
 using SwagApp2.Models;
 using Xamarin.Forms;
 
@@ -15,21 +16,21 @@ namespace SwagApp2.ViewModels
     {
         private readonly IListStore _listStore;
         private readonly IApplicationUserService _applicationUserService;
-        private readonly IPageDialogService _dialogService;
+        private readonly ICustomDialogService _dialogService;
         private readonly bool _isValid;
 
-        private ToDoList _selectedToDoItem;
-        public ToDoList SelectedToDoItem
+        private ToDoList _selectedList;
+        public ToDoList SelectedList
         {
-            get => _selectedToDoItem;
-            set => SetProperty(ref _selectedToDoItem, value);
+            get => _selectedList;
+            set => SetProperty(ref _selectedList, value);
         }
 
-        private ObservableCollection<ToDoList> _listNameCollection;
-        public ObservableCollection<ToDoList> ListNameCollection
+        private ObservableCollection<ToDoList> _listCollection;
+        public ObservableCollection<ToDoList> ListCollection
         {
-            get => _listNameCollection;
-            set => SetProperty(ref _listNameCollection, value);
+            get => _listCollection;
+            set => SetProperty(ref _listCollection, value);
         }
 
         private int _listHeight;
@@ -56,7 +57,7 @@ namespace SwagApp2.ViewModels
         public ListPageViewModel(INavigationService navigationService,
             IListStore listStore,
             IApplicationUserService applicationUserService,
-            IPageDialogService dialogService)
+            ICustomDialogService dialogService)
             : base(navigationService)
         {
             _listStore = listStore;
@@ -75,7 +76,7 @@ namespace SwagApp2.ViewModels
             }
             
             ListRowHeight = 50;
-            SelectedToDoItem = null;
+            SelectedList = null;
             Title = "List Collection";
         }
 
@@ -86,25 +87,25 @@ namespace SwagApp2.ViewModels
             await NavigationService.NavigateAsync(new Uri("NewListPageModal", UriKind.Relative));
         }
 
-        public DelegateCommand EditListCommand => new DelegateCommand(UpdateListCommandExecuted, () => SelectedToDoItem != null && _isValid )
-                .ObservesProperty(() => SelectedToDoItem);
+        public DelegateCommand EditListCommand => new DelegateCommand(UpdateListCommandExecuted, () => SelectedList != null && _isValid )
+                .ObservesProperty(() => SelectedList);
 
         private async void UpdateListCommandExecuted()
         {
             await NavigationService.NavigateAsync(
                 new Uri("SingleListPage", UriKind.Relative),
-                new NavigationParameters { {"List", _selectedToDoItem} } );
+                new NavigationParameters { {"List", _selectedList} } );
         }
 
-        public DelegateCommand DeleteListCommand => new DelegateCommand(DeleteListCommandExecuted, () => SelectedToDoItem != null && _isValid )
-               .ObservesProperty(() => SelectedToDoItem);
+        public DelegateCommand DeleteListCommand => new DelegateCommand(DeleteListCommandExecuted, () => SelectedList != null && _isValid )
+               .ObservesProperty(() => SelectedList);
 
         private async void DeleteListCommandExecuted()
         {
-            await _listStore.DeleteListAsync(_selectedToDoItem.Name);
-            ListNameCollection = new ObservableCollection<ToDoList>(await _listStore.GetAllListsAsync());
-            ListHeight = ListNameCollection.Count * ListRowHeight;
-            SelectedToDoItem = null;
+            await _listStore.DeleteListAsync(_selectedList.Name);
+            ListCollection = new ObservableCollection<ToDoList>(await _listStore.GetAllListsAsync());
+            ListHeight = ListCollection.Count * ListRowHeight;
+            SelectedList = null;
         }
 
         #region Navigation
@@ -116,11 +117,11 @@ namespace SwagApp2.ViewModels
                 var list = (ToDoList) parameters["NewList"];
                 list = await _listStore.CreateListAsync(list);
                 if (list == null)
-                    await _dialogService.DisplayAlertAsync("Error", "Could not create list!", "Ok");
+                    await _dialogService.ShowErrorDialog("Error", "Unable to create list!", "Ok");
             }
 
-            ListNameCollection = new ObservableCollection<ToDoList>(await _listStore.GetAllListsAsync());
-            ListHeight = ListNameCollection.Count * ListRowHeight;
+            ListCollection = new ObservableCollection<ToDoList>(await _listStore.GetAllListsAsync());
+            ListHeight = ListCollection.Count * ListRowHeight;
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)

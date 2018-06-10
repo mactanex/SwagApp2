@@ -5,7 +5,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SwagApp2.Views.UserSettingsPage"
              Padding="100"
-             BackgroundColor="Khaki"
+             BackgroundColor="{StaticResource BackGroundColor}"
              Title="{Binding Title}">
     <StackLayout VerticalOptions="Start" BackgroundColor="Transparent" Spacing="25">
         <StackLayout VerticalOptions="Start" BackgroundColor="Transparent">

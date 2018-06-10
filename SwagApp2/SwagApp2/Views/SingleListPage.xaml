@@ -2,7 +2,46 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:customControls="clr-namespace:SwagApp2.CustomControls;assembly=SwagApp2"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="SwagApp2.Views.SingleListPage">
-  
+             x:Class="SwagApp2.Views.SingleListPage"
+             Title="{Binding Title}"
+             BackgroundColor="{StaticResource BackGroundColor}">
+
+    <StackLayout Padding="25" Spacing="25">
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Created by:"></Label>
+            <Label Text="{Binding Owner}"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Margin="0,-10,0,0">
+            <Label Text="On date:"></Label>
+            <Label Text="{Binding Created}"/>
+        </StackLayout>
+
+        <ListView ItemsSource="{Binding ListItems}" SelectedItem="{Binding SelectedItem}">
+
+            <ListView.ItemTemplate>
+
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" Detail="{Binding Description}"/>
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
+
+            <ListView.Footer>
+
+                <StackLayout Orientation="Horizontal" Spacing="25" HorizontalOptions="CenterAndExpand" Margin="0,25,0,0">
+
+                    <customControls:ButtonWithoutShadow Text="+" Command="{Binding AddItemCommand}"/>
+
+                    <customControls:ButtonWithoutShadow Text="-" Command="{Binding DeleteItemCommand}"/>
+
+                </StackLayout>
+
+            </ListView.Footer>
+
+        </ListView>
+    </StackLayout>
 </ContentPage>

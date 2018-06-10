@@ -9,8 +9,7 @@
 
     <MasterDetailPage.Master>
         <ContentPage Title="Aasd"             
-                     BackgroundColor="#8D775F"
-                     >
+                     BackgroundColor="{StaticResource NavigationBackgroundColor}">
 
             <StackLayout Padding="40" Spacing="15">
                 <Button Text="{Binding NavigateToListViewTxt}" Style="{StaticResource ButtonStyle}" Command="{Binding NavigateCommand}" CommandParameter="BaseNavigationPageView/ListPageView"/>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SwagApp2.Models
 {
@@ -14,6 +15,27 @@ namespace SwagApp2.Models
             ListItems = new List<ListItem>();
             Created = DateTime.Now;
             Name = name;
+        }
+
+        public bool RemoveItem(string itemName)
+        {
+            var newList = ListItems.Where(l => l.Name != itemName).ToList();
+            if (newList.Count == ListItems.Count)
+                return false;
+
+            ListItems = newList;
+            return true;
+        }
+
+        public bool AddItem(ListItem item)
+        {
+            if (ListItems.FirstOrDefault(i => i.Name == item.Name) == null)
+            {
+                ListItems.Add(item);
+                return true;
+            }
+
+            return false;
         }
     }
 }

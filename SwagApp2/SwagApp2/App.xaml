@@ -2,24 +2,41 @@
 <prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
+             xmlns:customControls="clr-namespace:SwagApp2.CustomControls;assembly=SwagApp2"
              x:Class="SwagApp2.App">
     <prism:PrismApplication.Resources>
 
 		<!-- Application resource dictionary -->
 
         <ResourceDictionary>
+
+            <Color x:Key="BackGroundColor">Khaki</Color>
+            <Color x:Key="NavigationBackgroundColor">#8D775F</Color>
+            <Color x:Key="ButtonColor">#F1F0CC</Color>
+            <Color x:Key="InfoModalBackgroundColor">#9BC1BC</Color>
+            <Color x:Key="WarningModelBackgroundColor">#ED6A5A</Color>
+
             <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-                <Setter Property="BorderColor" Value="#F1F0CC"/>
-                <Setter Property="BackgroundColor" Value="#F1F0CC"/>
+                <Setter Property="BorderColor" Value="{StaticResource ButtonColor}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource ButtonColor}"/>
                 <Setter Property="VerticalOptions" Value="Fill"/>
                 <Setter Property="FontSize" Value="Large"/>
                 <Setter Property="CornerRadius" Value="10"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="HeightRequest" Value="50"/>
             </Style>
-            
 
+            <Style TargetType="customControls:ButtonWithoutShadow">
+                <Setter Property="WidthRequest" Value="70"/>
+                <Setter Property="HeightRequest" Value="70"/>
+                <Setter Property="CornerRadius" Value="35"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource ButtonColor}"/>
+                <Setter Property="FontSize" Value="35"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="BorderColor" Value="{StaticResource ButtonColor}"/>
+                <Setter Property="BorderWidth" Value="0"/>
+            </Style>
 
         </ResourceDictionary>
 

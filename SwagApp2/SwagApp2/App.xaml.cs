@@ -1,18 +1,15 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Prism;
 using Prism.Ioc;
 using SwagApp2.ViewModels;
 using SwagApp2.Views;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism.Unity;
-using Prism.Navigation;
-using Prism.Common;
 using Prism.Plugin.Popups;
 using SwagApp2.DataStores;
-using SwagApp2.MeetingsNamespace.Datastores;
-using SwagApp2.MeetingsNamespace.Views;
+using SwagApp2.ViewModels.CustomDialog;
+using SwagApp2.DialogService;
+using SwagApp2.Views.CustomDialog;
 using Unity;
 
 
@@ -48,9 +45,6 @@ namespace SwagApp2
             if (aus.DisplayName == null)
                 await NavigationService.NavigateAsync("MasterDetailPageView/BaseNavigationPageView/UserSettingsPage");
             else
-            {
-                
-            }
                 await NavigationService.NavigateAsync("MasterDetailPageView/BaseNavigationPageView/ListPageView");
         }
 
@@ -64,7 +58,7 @@ namespace SwagApp2
             // Services
             containerRegistry.RegisterSingleton<IListStore, FakeListStore>();
             containerRegistry.RegisterSingleton<IApplicationUserService, ApplicationUserService>();
-            containerRegistry.RegisterSingleton<IMeetingStorage, FakeMeetingStorage>();
+            containerRegistry.RegisterSingleton<ICustomDialogService, CustomDialogService>();
 
             // Navigation
             containerRegistry.RegisterForNavigation<BaseNavigationPageView, BaseNavigationPageViewModel>();
@@ -77,8 +71,10 @@ namespace SwagApp2
 
             // Modals
             containerRegistry.RegisterForNavigation<NewListPageModal, NewListPageModalViewModel>();
+            containerRegistry.RegisterForNavigation<NewListItemPageModal, NewListItemPageModalViewModel>();
 
-            containerRegistry.RegisterForNavigation<MeetingsHome,MeetingsHomeViewModel>(); //meetings 
+            // Custom Dialog
+            containerRegistry.RegisterForNavigation<CustomErrorDialog, CustomErrorDialogViewModel>();
         }
     }
 }
