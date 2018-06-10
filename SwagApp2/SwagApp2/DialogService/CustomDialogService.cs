@@ -17,7 +17,6 @@ namespace SwagApp2.DialogService
         public CustomDialogService(INavigationService navigationService)
         {
             _navigationService = navigationService;
-            PageClosedTaskCompletionSource = new TaskCompletionSource<bool>();
         }
         public async Task<bool> ShowErrorDialog(string title, string message, string btnText)
         {
