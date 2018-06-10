@@ -58,7 +58,7 @@ namespace SwagApp2
             // Services
             containerRegistry.RegisterSingleton<IListStore, FakeListStore>();
             containerRegistry.RegisterSingleton<IApplicationUserService, ApplicationUserService>();
-            containerRegistry.RegisterSingleton<ICustomDialogService, CustomDialogService>();
+            containerRegistry.RegisterCustomDialogService();
 
             // Navigation
             containerRegistry.RegisterForNavigation<BaseNavigationPageView, BaseNavigationPageViewModel>();
@@ -72,9 +72,6 @@ namespace SwagApp2
             // Modals
             containerRegistry.RegisterForNavigation<NewListPageModal, NewListPageModalViewModel>();
             containerRegistry.RegisterForNavigation<NewListItemPageModal, NewListItemPageModalViewModel>();
-
-            // Custom Dialog
-            containerRegistry.RegisterForNavigation<CustomErrorDialog, CustomErrorDialogViewModel>();
         }
     }
 }
