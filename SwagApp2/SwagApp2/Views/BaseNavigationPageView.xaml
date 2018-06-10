@@ -5,5 +5,5 @@
                 prism:ViewModelLocator.AutowireViewModel="True"
                 x:Class="SwagApp2.Views.BaseNavigationPageView"
                 BarTextColor="Black"
-                BarBackgroundColor="#8D775F">
+                BarBackgroundColor="{StaticResource NavigationBackgroundColor}">
 </NavigationPage>
